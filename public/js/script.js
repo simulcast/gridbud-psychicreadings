@@ -10,17 +10,6 @@ $(document).ready(function() {
 		mobile = true;
 	};
 
-	/* chat app */
-    $('form').submit(function(){
-      socket.emit('chat message', $('#m').val());
-      $('#m').val('');
-      return false;
-    });
-
-    socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
-    });
-
 	/* start prompt for mobile */
 	$("#startprompt").click(function() {
 		$("#startprompt").hide();
@@ -49,6 +38,7 @@ $(document).ready(function() {
 		"../sound/loop6.mp3",
 		"../sound/loop7.mp3",
 		"../sound/loop8.mp3",
+		"../sound/click.mp3"
 	], function() { // fill sounds[] array with players after all buffers are loaded
 		console.log('all buffers loaded');
 		for (i = 0; i < 8; i++) {
@@ -61,6 +51,10 @@ $(document).ready(function() {
 				frozen[i] = false;
 			};
 	});
+	var click = new Tone.Player({
+		"url" : "../sound/click.mp3",
+		"loop" : true
+	}).toMaster();
 
 	/* start tranposrt helper so that it only occurs once */
 
@@ -81,6 +75,7 @@ $(document).ready(function() {
 		//sconsole.log(buffers.loaded);
 		if (files.loaded == true) {
 			startTransport(); // start the transport only when the buffers have loaded
+			click.start("@1n");
 		}
 	});
 

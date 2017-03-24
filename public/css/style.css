@@ -1,22 +1,12 @@
 @import 'pure-min.css';
 
-body {
-	font: 1.5em monospace; 
-}
-form { background: gray; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-form input { border: 0; width: 98%; margin-right: 2%; }
-form button { width: 25%; background: rgba(255,0,255,1); border: none; padding: 10px; }
-#messages { list-style-type: none; margin: 0; padding: 0; letter-spacing: 0em !important; border-left: .5em solid white; border-top: .5em solid white; }
-#messages li { padding: 5px 10px; word-wrap: break-word; }
-#messages li:nth-child(odd) { background: #eee; }
-
 html, body {
 	height: 100%;
 	width: 100%;
 }
 
 .pure-g {
-	height: 25%;
+	height: 50%;
 }
 
 .pure-g.gutters > [class *=pure-u]{

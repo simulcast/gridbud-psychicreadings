@@ -40,13 +40,7 @@ io.on('connection', function(socket){
 
   //wraps user ID in an object for transmission
   var userID = socket.id;
-
-  /* chat app */
-  socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
-    io.emit('chat message', msg);
-  });
-
+  
   /* SOUNDS
   on connection, tell user which sounds are already playing
   1) wait for initialization request, which comes after all buffers are loaded
