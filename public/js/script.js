@@ -75,7 +75,6 @@ $(document).ready(function() {
 		//sconsole.log(buffers.loaded);
 		if (files.loaded == true) {
 			startTransport(); // start the transport only when the buffers have loaded
-			click.start("@1n");
 		}
 	});
 
@@ -91,6 +90,7 @@ $(document).ready(function() {
 		}
 		else if (Tone.Transport.state == 'started' && isMobile.any == false) {
 			console.log('tranposrt has already started, showing board on downbeat');
+			click.start("@1n");
 			Tone.Draw.schedule(function() { //hide loading, show board on desktop
 				$("#loading").hide();
 				$("#container").show();
