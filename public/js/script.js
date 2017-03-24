@@ -87,6 +87,7 @@ $(document).ready(function() {
 			console.log('tranposrt has already started, showing board on user prompt');
 			$("#loading").hide();
 			$("#startprompt").show();
+			click.sync().start();
 		}
 		else if (Tone.Transport.state == 'started' && isMobile.any == false) {
 			console.log('tranposrt has already started, showing board on downbeat');
