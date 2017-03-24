@@ -90,11 +90,11 @@ $(document).ready(function() {
 		}
 		else if (Tone.Transport.state == 'started' && isMobile.any == false) {
 			console.log('tranposrt has already started, showing board on downbeat');
-			click.start("@1n");
 			Tone.Draw.schedule(function() { //hide loading, show board on desktop
 				$("#loading").hide();
 				$("#container").show();
 			}, "@1n");
+			click.sync().start();
 		}
 		else if (Tone.Transport.state == 'stopped') {
 			console.log('tranposrt has not started yet, cannot show board');
