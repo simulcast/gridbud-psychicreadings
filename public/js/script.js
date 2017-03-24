@@ -1,4 +1,5 @@
 var socket = io();
+var mobile = false;
 
 $(document).ready(function() {
 	$("#container").hide(); //hide container on load so it can show when buffered
@@ -6,6 +7,7 @@ $(document).ready(function() {
 	/* hide recorder div on mobile */
 	if (isMobile.any == true) {
 		$("#record").hide();
+		mobile = true;
 	};
 
 	/* chat app */
@@ -131,7 +133,7 @@ $(document).ready(function() {
 		$("#box" + number).addClass("playing");  // change color to "playing"
 		Tone.Draw.schedule(function(){
 			/* flash on desktop on downbeat */
-			if (isMobile.any == false) {
+			if (mobile == false) {
 				$("#box" + number).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 			}
 		}, "@1n")
@@ -145,68 +147,4 @@ $(document).ready(function() {
 		sounds[number].stop(); // stop it on beat
 	});
 
-	/* mouse happenings, only do on desktop */
-	if (isMobile.any == false) {
-		var colorID = randomColor({
-		   luminosity: 'light'
-	});
-	socket.emit('mouse_connected', colorID, isMobile.any);
-
-		$('body').on('mousemove', function() {
-			var position = {
-				x: ((event.pageX / $(window).width()) * 100).toFixed(2),
-				y: ((event.pageY / $(window).height()) * 100).toFixed(2)
-			}
-			//console.log(position.x);
-			socket.emit('mouse_moving', position);
-		});
-	};
-
-	socket.on('initialize_mice', function(mice){
-		for (i = 0; i < mice.length; i++) {
-			console.log(mice[i].id);
-			var id = mice[i].id;
-			var color = mice[i].color;
-			$('body').append('<div class="cursor" id="'+id+'"></div>');
-			$('#'+id).css('backgroundColor', color);
-		}
-	});
-
-	socket.on('add_mouse', function(mice, id){
-			for (i = 0; i < mice.length; i++) {
-				//console.log(mice[i].id);
-				if (mice[i].id == id) {
-					var id = mice[i].id;
-					var color = mice[i].color;
-					$('body').append('<div class="cursor" id="'+id+'"></div>');
-					$('#'+id).css('backgroundColor', color);
-				}
-			}
-	})    	
-	socket.on('disconnect_mouse', function(id){
-		//console.log('disconnect at ' + id);
-		$('#'+id).remove();
-	});
-
-	socket.on('animate_cursor', function(position, id){
-		//console.log('animating id ' + id + 'at ' + position);
-		$('#'+id).css('top', position.y+'%');
-		$('#'+id).css('left', position.x+'%');
-	});
 });
-
-/* homebrew clicktoggle */
-
-$.fn.clicktoggle = function(a, b) {
-    return this.each(function() {
-        var clicked = false;
-        $(this).click(function() {
-            if (clicked) {
-                clicked = false;
-                return b.apply(this, arguments);
-            }
-            clicked = true;
-            return a.apply(this, arguments);
-        });
-    });
-};

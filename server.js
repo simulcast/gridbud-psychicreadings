@@ -47,32 +47,6 @@ io.on('connection', function(socket){
     io.emit('chat message', msg);
   });
 
-  /* MOUSE
-  on connection, send command to clients to create established elements in their windows
-  add user's mouse to array and assign it id and color
-  broadcast new mouse to everybody but the user
-  
-  on move event, take mouse position and send it back out attached to an id
-  */
-
-  socket.on('mouse_connected', function(colorID, mobile){
-    if (mobile == true) {
-      io.to(socket.id).emit('initialize_mice', mice);
-      mice.push({id: socket.id, color: colorID});
-    }
-    else {
-      io.to(socket.id).emit('initialize_mice', mice);
-      mice.push({id: socket.id, color: colorID});      
-      socket.broadcast.emit('add_mouse', mice, userID);
-    }
-  })
-
-  socket.on('mouse_moving', function(position) {
-    //console.log(position);
-    io.emit('animate_cursor', position, userID);
-  })
-  //console.log(mice);
-
   /* SOUNDS
   on connection, tell user which sounds are already playing
   1) wait for initialization request, which comes after all buffers are loaded
