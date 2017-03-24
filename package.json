@@ -1,0 +1,22 @@
+{
+  "name": "tone.js-realtime",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^14.1.0",
+    "express": "^4.15.0",
+    "hover.css": "^2.0.2",
+    "jquery": "^3.1.1",
+    "later": "^1.2.0",
+    "randomcolor": "^0.4.4",
+    "repeat": "0.0.6",
+    "socket.io": "^1.7.3",
+    "workerify": "^0.3.0"
+  }
+}

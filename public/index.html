@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>simulcast - high occupancy vehicle - live @ psychic readings</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- jQuery + user script
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="js/libs/Tone.min.js"></script>
+  <script src="js/libs/jquery-2.1.3.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/libs/recorder.js"></script>
+  <script src="js/libs/recorderWorker.js"></script>
+  <script src="js/libs/StartAudioContext.js"></script>
+  <script src="js/libs/isMobile.min.js"></script>
+  <script src="js/libs/randomColor.js"></script>
+  <script src="js/mouse.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/grids-responsive-min.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div id="loading">
+  <span class="text">loading!</span>
+</div>
+<div id="startprompt">
+  <span id ="start" class="text">start</span>
+</div>
+<div id="container"">
+  <div class = "pure-g gutters row">
+    <div class="box pure-u-1-4" id="box0"></div>
+    <div class="box pure-u-1-4" id="box1"></div>
+    <div class="box pure-u-1-4" id="box2"></div>
+    <div class="box pure-u-1-4" id="box3"></div>
+  </div>
+  <div class = "pure-g gutters row">
+    <div class="box pure-u-1-4" id="box4"></div>
+    <div class="box pure-u-1-4" id="box5"></div>
+    <div class="box pure-u-1-4" id="box6"></div>
+    <div class="box pure-u-1-4" id="box7"></div>
+  </div>
+  <div class = "pure-g gutters row">
+    <ul id="messages"></ul>
+      <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+  </div>
+</div>
+<!-- Google Analytics
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script>
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
