@@ -130,7 +130,10 @@ $(document).ready(function() {
 		$("#box" + number).removeClass("stopped");
 		$("#box" + number).addClass("playing");  // change color to "playing"
 		Tone.Draw.schedule(function(){
-			$("#box" + number).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+			/* flash on desktop on downbeat */
+			if (isMobile.any == false) {
+				$("#box" + number).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+			}
 		}, "@1n")
 		sounds[number].start("@1n"); // play it on beat
 	});
