@@ -31,27 +31,7 @@ $(document).ready(function() {
 	//on iOS, the context will be started on the first valid user action the .box class
 	StartAudioContext(Tone.context, '#startprompt').then(function(){
 	    //console.log('up and running');
-	})
-
-    /* recorder js! */
-
-    $("#record").clicktoggle(function() {
-        console.dir(Tone.Master);
-        rec = new Recorder(Tone.Master, {
-            callback: function(e){
-                console.log('this line hit');
-                rec.clear();
-                Recorder.forceDownload(e, "gridbud_recording.wav");
-            }
-        });
-        rec.record();
-        $(this).html('download');
-    }, function() {
-        console.log('stop clicked');
-        rec.stop();
-        rec.exportWAV();
-        $(this).html('record');
-    });
+	});
 
 	/* multiplayer with sounds loaded in as array of paths to files
 	accessible by sounds.command(number);
