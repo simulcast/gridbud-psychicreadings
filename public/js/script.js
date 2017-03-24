@@ -127,47 +127,19 @@ $(document).ready(function() {
 
 	/* takes in signal to play and plays the corresponding sound file */
 	socket.on('play', function(number){
-        if (frozen[number] == true) {
-        	console.log(number + "is frozen");
-        	return; 
-        }
-    	else if (sounds[number].state == "stopped") { // if it's stopped, do the following...
-    		console.log(number + " is stopped, pinged by server to play on downbeat");
-			$("#box" + number).removeClass("stopped");
-			$("#box" + number).addClass("about-to-play"); // change color to "about-to-play"
-    		frozen[number] = true;
-			Tone.Draw.schedule(function(){
-				$("#box" + number).removeClass("about-to-play");
-				$("#box" + number).addClass("playing");  // change color to "playing"
-				frozen[number] = false;
-				console.log(number + " playing");
-			}, "@1n");
-			sounds[number].start("@1n"); // play it on beat
-    	}
+		$("#box" + number).removeClass("stopped");
+		$("#box" + number).addClass("playing");  // change color to "playing"
+		Tone.Draw.schedule(function(){
+			$("#box" + number).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+		}, "@1n")
+		sounds[number].start("@1n"); // play it on beat
 	});
 
 	/* takes in signal to stop and stops the corresponding sound file */
 	socket.on('stop', function(number){
-		/* if it's frozen, do nothing */
-		if (frozen[number] == true) { 
-			console.log(number + " is frozen, can't stop");
-			return;
-		}
-
-		/* if it's playing, stop it on downbeat */
-		else if (sounds[number].state = "playing") {
-			console.log(number + " is playing, pinged by stop to play on downbeat");
-			$("#box" + number).removeClass("playing");
-			$("#box" + number).addClass("about-to-stop"); // change color to "about-to-stop"
-			frozen[number] = true;
-			Tone.Draw.schedule(function(){
-				$("#box" + number).removeClass("about-to-stop");
-				$("#box" + number).addClass("stopped"); // changed color to "stopped"
-				frozen[number] = false;
-				console.log(number + " stopped");
-			}, "@1n"); // return color on downbeat
-			sounds[number].stop("@1n"); // stop it on beat
-		};
+		$("#box" + number).removeClass("playing");
+		$("#box" + number).addClass("stopped"); // changed color to "stopped"
+		sounds[number].stop(); // stop it on beat
 	});
 
 	/* mouse happenings, only do on desktop */

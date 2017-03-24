@@ -106,7 +106,7 @@ html, body {
 }
 
 .playing {
-	background-color: rgba(0, 255, 0, .8);
+	background-color: rgba(255,0,255,.5);
 }
 
 .stopped {
